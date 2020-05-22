@@ -8,7 +8,7 @@ function Square(props){
       /* props.onPress passes the press event to the onPress defined of the parent
        in this case Board.*/
       <TouchableOpacity style={styles.button} onPress = {props.onPress}>
-        <Text style={{fontSize: 100}}>
+        <Text style={{fontSize: 100 }}>
           {props.value}
         </Text>
       </TouchableOpacity>
@@ -25,7 +25,6 @@ function Br(){
     </View>
   )
 }
-
 
 class Board extends React.Component {
     renderSquare(i) {
@@ -90,7 +89,8 @@ class Game extends React.Component {
     // because we fill the squares with null if they are not null it'll trigger
     // this if statement
     if(calculateWinner(squares))
-      return;
+        return;
+
     else if(squares[i]){
       this.setState({
         history: history.concat([{squares:squares,}]),
@@ -132,7 +132,7 @@ class Game extends React.Component {
     return (
       /*Since this is the owner of all the squares, it has to define the
       onPress func */
-      <View>
+      <View style={styles.container}>
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>{status}</Text>
         <View style={styles.container}>
           <Board squares={current.squares}
@@ -147,6 +147,23 @@ class Game extends React.Component {
     );
   }
 }
+
+/* This works on expo
+<View style = {{flexDirection: 'row'}}>
+  <Square/>
+  <Square/>
+  <Square/>
+</View>
+<View style = {{flexDirection: 'row'}}>
+  <Square/>
+  <Square/>
+  <Square/>
+</View>
+<View style = {{flexDirection: 'row'}}>
+  <Square/>
+  <Square/>
+  <Square/>
+</View> */
 
 function calculateWinner(squares){
   const lines = [
@@ -163,7 +180,9 @@ function calculateWinner(squares){
     const [a,b,c] = lines[i];
     if (squares[a] != ' ' && squares[a] && squares[a] == squares[b] &&
       squares[a] == squares[c])
-        return squares[a];
+        {
+          return squares[a];
+        }
   }
   return null;
 }
@@ -176,6 +195,7 @@ const styles = StyleSheet.create({
     //backgroundColor: 'gray',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 60,
   },
   button:{
     //backgroundColor: '#fff',
