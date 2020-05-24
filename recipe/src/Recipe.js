@@ -11,7 +11,7 @@ const Recipe = (props) =>{
             <img className={style.image} src={props.image} alt="placeholder"/>
             <br/>
             <a href={props.url}> Recipe </a>
-            <ol>
+            <ol className={style.list}>
                 {props.ingredients.map(ingredient => (
                   <li>{ingredient.text}</li>
                 ))}
